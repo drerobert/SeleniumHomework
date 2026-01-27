@@ -17,15 +17,22 @@ public class SauceDemoTests extends BaseUiTest {
     //parse the JSON for credentials
     CredentialDTO loginCredentials = JsonCredentialsParser.parseJson();
 
-    ///TESTS
+    /// TESTS
+    /**
+     * Case 1.
+     * Login
+     * Add items
+     * Checkout
+     * Assert finish text
+     */
     @Test
     @DisplayName("Purchase Process Test")
     public void case1_PurchaseProcessTest() {
         // Open the browser
         driver.get(BASE_URL);
-        
+
         LoginPage loginPage = new LoginPage(driver);
-        
+
         loginPage.login(loginCredentials.getUsername(), loginCredentials.getPassword());
 
         CheckoutInfoPage infoPage = addItemsAndCheckout("Sauce Labs Backpack", "Sauce Labs Fleece Jacket");
@@ -43,7 +50,7 @@ public class SauceDemoTests extends BaseUiTest {
      * Usage: addItemsAndCheckout("Item 1", "Item 2", "Item 3");
      */
     private CheckoutInfoPage addItemsAndCheckout(String... itemsToAdd) {
-        // Professional safeguard: Ensure the test fails if no items are passed
+        // Test fails if no items are passed
         if (itemsToAdd == null || itemsToAdd.length == 0) {
             throw new IllegalArgumentException("Test Error: You must provide at least one item name to checkout.");
         }
