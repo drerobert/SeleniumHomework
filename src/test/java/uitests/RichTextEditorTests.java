@@ -1,16 +1,12 @@
 package uitests;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.htmleditor.HtmlEditorPage;
 import uitestbase.BaseUiTest;
 
-import static uitestbase.config.Config.BASE_ONLINE_HTML_EDITOR_URL;
-
 public class RichTextEditorTests extends BaseUiTest {
     /// CONSTANTS
-    ///
     // Define the input with Inline CSS
     private static final String FORMATTED_RICH_TEXT =
             "<span style='font-weight: bold;'>Automation</span> " +
@@ -31,11 +27,17 @@ public class RichTextEditorTests extends BaseUiTest {
      */
     @Test
     @DisplayName("Case_3: Rich Text Editor test")
-    public void case1_PurchaseProcessTest() {
+    public void case3_verifyRichTextEditor() {
 
         new HtmlEditorPage(driver)
                 .open()
                 .setContentWithInlineCss(FORMATTED_RICH_TEXT)
-                .verifyEditorText(EXPECTED_TEXT);
+                //Verify the text itself
+                .verifyEditorText(EXPECTED_TEXT)
+                //Verify specific formatting
+                .verifyTextIsBold("Automation")
+                .verifyTextIsUnderlined("Test");
+        ;
+
     }
 }

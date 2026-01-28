@@ -31,7 +31,9 @@ public class LoginPage extends BasePage {
         return new InventoryPage(driver);
     }
 
-    //Negative path
+    /**
+     * Negative path with wrong info
+     */
     public LoginPage tryLoginFailure(CredentialDTO user) {
         enterCredentials(user);
         return this;
@@ -52,6 +54,9 @@ public class LoginPage extends BasePage {
     }
 
 
+    /**
+     * Verify all the possible error messages
+     */
     public LoginPage verifyLoginError(String expectedMessage) {
         logger.info("Verifying login error message...");
         String actualMessage = waitHelper.waitForElementVisible(errorContainer).getText();
