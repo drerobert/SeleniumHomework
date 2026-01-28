@@ -15,7 +15,7 @@ public class CheckoutInfoPage extends BasePage {
         super(driver);
     }
 
-    public void enterInformation(String fName, String lName, String zip) {
+    public CheckoutInfoPage enterInformation(String fName, String lName, String zip) {
         logger.info("Entering checkout info: {} {}, {}", fName, lName, zip);
 
         //Need to wait to be able to click it. Click into it since for some reason it won't register the typing.
@@ -25,6 +25,8 @@ public class CheckoutInfoPage extends BasePage {
 
         driver.findElement(lastNameInput).sendKeys(lName);
         driver.findElement(postalCodeInput).sendKeys(zip);
+
+        return new CheckoutInfoPage(driver);
     }
 
     // Navigates to the NEXT page

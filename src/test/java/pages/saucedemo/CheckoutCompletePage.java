@@ -1,5 +1,6 @@
 package pages.saucedemo;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import uitestbase.BasePage;
@@ -12,8 +13,12 @@ public class CheckoutCompletePage extends BasePage {
         super(driver);
     }
 
-    public String getCompleteMessage() {
-        logger.info("Checking complete message header...");
-        return waitHelper.waitForElementVisible(completeHeader).getText();
+    public void verifyCompleteMessage(String expectedMessage) {
+        logger.info("Verifying complete message is: '{}'", expectedMessage);
+
+        String actualMessage = waitHelper.waitForElementVisible(completeHeader).getText();
+
+        Assertions.assertEquals(expectedMessage, actualMessage,
+                "The checkout complete message did not match!");
     }
 }
