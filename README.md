@@ -23,18 +23,27 @@ src/test/resources (credentials and requirements)
 
 ## Tech Stack
 Language: Java 17
+
 Core Framework: Selenium WebDriver 4
+
 Test Runner: JUnit 5
+
 Build Tool: Gradle
+
 Data Parsing: Jackson 
+
 Logging: SLF4J / Logback
 
 Test data (credential.json) and project requirements (HomeWork.pdf)
+
 ## How to Run
 Run all tests:
 ./gradlew test
 
 Run a specific test case:
 ./gradlew test --tests "uitests.GuruTests.case4_verifyIframesTabsAndButton"
+
+## Lessons learned/Thought process
+[Notes.md](NOTES.md)
 
 Author: Drenyovszki Róbert - robert.drenyovszki@gmail.com
