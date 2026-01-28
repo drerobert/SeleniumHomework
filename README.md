@@ -46,4 +46,5 @@ Run a specific test case:
 ## Lessons learned/Thought process
 [Notes.md](NOTES.md)
 
+## Contact
 Author: Drenyovszki Róbert - robert.drenyovszki@gmail.com
