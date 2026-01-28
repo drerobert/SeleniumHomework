@@ -60,9 +60,7 @@ public class HtmlEditorPage extends BasePage {
         String fontWeight = wordElement.getCssValue("font-weight");
         logger.info("Found font-weight: {}", fontWeight);
 
-        // Validate (Browsers return "bold", "700", "800", or "900" for bold)
-        boolean isBold = fontWeight.equals("bold") ||
-                Integer.parseInt(fontWeight) >= 700;
+        boolean isBold = Integer.parseInt(fontWeight) >= 700;
 
         Assertions.assertTrue(isBold,
                 "Expected '" + wordToVerify + "' to be bold (>=700), but found weight: " + fontWeight);
