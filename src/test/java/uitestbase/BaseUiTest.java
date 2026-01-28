@@ -2,7 +2,6 @@ package uitestbase;
 
 import helpers.credentialHelpers.CredentialDTO;
 import helpers.credentialHelpers.JsonCredentialsParser;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,9 +35,6 @@ public class BaseUiTest {
         logger.info("Initializing WebDriver for UI Test...");
 
         ChromeOptions options = getChromeOptions();
-
-        // WebDriverManager ensures the correct chromedriver binary is present
-        WebDriverManager.chromedriver().setup();
 
         driver = new ChromeDriver(options);
 
