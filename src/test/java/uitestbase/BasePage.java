@@ -18,7 +18,7 @@ public class BasePage {
     protected static WebDriver driver;
     protected static WaitHelper waitHelper;
 
-    // Locators
+    /// Locators
     private final By footerCopy = By.className("footer_copy");
 
     // Dynamically assign the logger to the child class,

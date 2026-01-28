@@ -23,8 +23,6 @@ public class SauceDemoTests extends BaseUiTest {
     private final static String EXPECTED_FOOTER_TEXT = "© " + Year.now().getValue() + " Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy";
 
 
-
-
     /// TESTS
     /**
      * Case 1.
@@ -43,6 +41,7 @@ public class SauceDemoTests extends BaseUiTest {
         driver.get(BASE_SAUCE_DEMO_URL);
 
         new LoginPage(driver)
+                .open()
                 .login(glitchUser)
                 .addItems(ITEM_BACKPACK, ITEM_FLEECE_JACKET)
                 .verifyCartBadgeCount(2)
@@ -72,13 +71,9 @@ public class SauceDemoTests extends BaseUiTest {
         CredentialDTO onlyPassword = createUser("", "a");
         CredentialDTO wrongCredentials = createUser("a", "a");
 
-        // Open the browser
-        driver.get(BASE_SAUCE_DEMO_URL);
-
-        LoginPage loginPage = new LoginPage(driver);
-
-
-        loginPage.tryLoginFailure(emptyUser)
+        new LoginPage(driver)
+                .open()
+                .tryLoginFailure(emptyUser)
                 .verifyLoginError(ERROR_USERNAME_EMPTY)
                 //Try with username only
                 .tryLoginFailure(onlyUsername)

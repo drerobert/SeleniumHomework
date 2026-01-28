@@ -8,7 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import uitestbase.BasePage;
 
-public class LoginPage extends BasePage{
+import static uitestbase.config.Config.BASE_SAUCE_DEMO_URL;
+
+public class LoginPage extends BasePage {
     By usernameField = By.id("user-name");
     By passwordField = By.id("password");
     By loginButton = By.id("login-button");
@@ -16,6 +18,11 @@ public class LoginPage extends BasePage{
 
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public LoginPage open() {
+        driver.get(BASE_SAUCE_DEMO_URL);
+        return this;
     }
 
     public InventoryPage login(CredentialDTO user) {
