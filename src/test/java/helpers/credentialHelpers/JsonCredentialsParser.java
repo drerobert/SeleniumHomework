@@ -3,16 +3,40 @@ package helpers.credentialHelpers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.InputStream;
+import java.util.List;
 
 public class JsonCredentialsParser {
+
     private static final Logger logger = LoggerFactory.getLogger(JsonCredentialsParser.class);
 
-    private JsonCredentialsParser() {}
+    //Cache credentials to load once, not at every test
+    private static volatile List<CredentialDTO> cachedCredentials;
 
-    public static CredentialDTO parseJson() {
-        logger.info("Parsing json...");
+    private JsonCredentialsParser() {
+    }
+
+    public static CredentialDTO getCredential(String targetUsername) {
+        return getCachedCredentials().stream()
+                .filter(c -> c.getUsername().equals(targetUsername))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("User not found: " + targetUsername));
+    }
+
+    public static List<CredentialDTO> getCachedCredentials() {
+        if (cachedCredentials == null) {
+            synchronized (JsonCredentialsParser.class) {
+                if (cachedCredentials == null) {
+                    cachedCredentials = loadCredentials();
+                }
+            }
+        }
+        return cachedCredentials;
+    }
+
+    private static List<CredentialDTO> loadCredentials() {
+        logger.info("Loading credentials from JSON...");
         try {
             ObjectMapper mapper = new ObjectMapper();
 
@@ -24,10 +48,16 @@ public class JsonCredentialsParser {
                 throw new IllegalStateException("credential.json not found");
             }
 
-            return mapper.readValue(is, CredentialDTO.class);
+            CredentialDTO[] credentials =
+                    mapper.readValue(is, CredentialDTO[].class);
+
+            List<CredentialDTO> credentialList = List.of(credentials);
+
+            logger.info("Credentials loaded successfully ({} users)", credentialList.size());
+            return credentialList;
 
         } catch (Exception e) {
-            throw new RuntimeException("Unable to parse credential.json", e);
+            throw new RuntimeException("Unable to load credential.json", e);
         }
     }
 }
