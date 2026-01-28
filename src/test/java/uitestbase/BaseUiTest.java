@@ -5,6 +5,7 @@ import helpers.credentialHelpers.JsonCredentialsParser;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +62,9 @@ public class BaseUiTest {
         prefs.put("profile.password_manager_leak_detection", false);
 
         options.setExperimentalOption("prefs", prefs);
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
-        options.addArguments("--disable-notifications"); // Blocks "Show Notifications" popups
+        options.addArguments("--disable-notifications");
         return options;
     }
 

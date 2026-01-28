@@ -19,9 +19,6 @@ public class HtmlEditorPage extends BasePage {
         return this;
     }
 
-    /**
-     * Uses JavascriptExecutor to inject HTML with Inline CSS directly into the editor.
-     */
     public HtmlEditorPage setContentWithInlineCss(String htmlContent) {
         logger.info("Setting text content... ");
 
@@ -31,7 +28,8 @@ public class HtmlEditorPage extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript(
-                "const domEditableElement = arguments[0];" + "domEditableElement.ckeditorInstance.setData(arguments[1]);"
+                "const domEditableElement = arguments[0];"
+                        + "domEditableElement.ckeditorInstance.setData(arguments[1]);"
                 ,
                 editor, htmlContent
         );
@@ -39,9 +37,6 @@ public class HtmlEditorPage extends BasePage {
         return this;
     }
 
-    /**
-     * The text in the editor is the same as the expected text
-     */
     public HtmlEditorPage verifyEditorText(String expectedText) {
         logger.info("Verifying editor text matches: '{}'", expectedText);
 
@@ -53,9 +48,6 @@ public class HtmlEditorPage extends BasePage {
         return this;
     }
 
-    /**
-     * Verifies that a specific word inside the editor has 'Bold' styling.
-     */
     public HtmlEditorPage verifyTextIsBold(String wordToVerify) {
         logger.info("Verifying '{}' is BOLD...", wordToVerify);
 
@@ -78,9 +70,6 @@ public class HtmlEditorPage extends BasePage {
         return this;
     }
 
-    /**
-     * Verifies that a specific word inside the editor has Underline styling.
-     */
     public HtmlEditorPage verifyTextIsUnderlined(String wordToVerify) {
         logger.info("Verifying '{}' is UNDERLINED...", wordToVerify);
 
@@ -88,13 +77,10 @@ public class HtmlEditorPage extends BasePage {
                 By.xpath("//div[contains(@class, 'ck-content')]//*[text()='" + wordToVerify + "']")
         );
 
-        // 1. Get the text-decoration property
-        // Note: Chrome often returns complex strings like "underline solid rgb(0,0,0)"
         String textDecoration = wordElement.getCssValue("text-decoration");
 
         logger.info("Found text-decoration: {}", textDecoration);
 
-        // 2. Validate it contains the word "underline"
         Assertions.assertTrue(textDecoration.contains("underline"),
                 "Expected '" + wordToVerify + "' to be underlined, but found: " + textDecoration);
 

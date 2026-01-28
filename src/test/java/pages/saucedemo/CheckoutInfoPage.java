@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import uitestbase.BasePage;
 
 public class CheckoutInfoPage extends BasePage {
+    /// LOCATORS
     private final By firstNameInput = By.id("first-name");
     private final By lastNameInput = By.id("last-name");
     private final By postalCodeInput = By.id("postal-code");

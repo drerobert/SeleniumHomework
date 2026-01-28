@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class UsersApiClient {
 
+    /// CONSTANTS
     private static final Logger logger = LoggerFactory.getLogger(UsersApiClient.class);
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
     private static final String USERS_ENDPOINT = "/users";
@@ -24,7 +25,7 @@ public class UsersApiClient {
 
     //Load only once
     static {
-        //add timeouts
+        //add timeouts if for some reason the service is slow
         client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)

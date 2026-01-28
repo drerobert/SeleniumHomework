@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import uitestbase.BasePage;
 
 public class InventoryPage extends BasePage {
-
+    /// LOCATORS
     private final By cartBadge = By.className("shopping_cart_badge");
     private final By cartLink = By.className("shopping_cart_link");
 

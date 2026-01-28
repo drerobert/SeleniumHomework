@@ -15,7 +15,6 @@ public class RichTextEditorTests extends BaseUiTest {
 
     private final static String EXPECTED_TEXT = "Automation Test Example";
 
-
     /// TESTS
     /**
      * Case 3.
@@ -28,7 +27,6 @@ public class RichTextEditorTests extends BaseUiTest {
     @Test
     @DisplayName("Case_3: Rich Text Editor test")
     public void case3_verifyRichTextEditor() {
-
         new HtmlEditorPage(driver)
                 .open()
                 .setContentWithInlineCss(FORMATTED_RICH_TEXT)
@@ -37,7 +35,5 @@ public class RichTextEditorTests extends BaseUiTest {
                 //Verify specific formatting
                 .verifyTextIsBold("Automation")
                 .verifyTextIsUnderlined("Test");
-        ;
-
     }
 }

@@ -24,13 +24,12 @@ public class JsonCredentialsParser {
                         new IllegalArgumentException("User not found: " + targetUsername));
     }
 
+    // The method tests actually call
     public static List<CredentialDTO> getCachedCredentials() {
+        // Only load the file if we haven't done it yet.
         if (cachedCredentials == null) {
-            synchronized (JsonCredentialsParser.class) {
-                if (cachedCredentials == null) {
-                    cachedCredentials = loadCredentials();
-                }
-            }
+            logger.info("First time access: Parsing JSON...");
+            cachedCredentials = loadCredentials();
         }
         return cachedCredentials;
     }

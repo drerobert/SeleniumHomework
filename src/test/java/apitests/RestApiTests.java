@@ -10,9 +10,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RestApiTests {
-
+    /// CONSTANTS
     private static final Logger logger = LoggerFactory.getLogger(RestApiTests.class);
 
+    /// TESTS
+    /**
+     * Case 5.
+     * GET the users
+     * Log only names and emails
+     * Validate first user email has '@' symbol
+     */
     @Test
     @DisplayName("Case 5: REST API GET Users and verify email")
     public void case5_verifyEmailFromGetUsersApi() {

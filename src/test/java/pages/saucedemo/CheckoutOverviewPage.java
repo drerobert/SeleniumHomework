@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import uitestbase.BasePage;
 
 public class CheckoutOverviewPage extends BasePage {
+    /// LOCATORS
     private final By finishButton = By.id("finish");
 
     public CheckoutOverviewPage(WebDriver driver) {

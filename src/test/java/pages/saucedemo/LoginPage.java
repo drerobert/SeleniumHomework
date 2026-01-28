@@ -11,6 +11,7 @@ import uitestbase.BasePage;
 import static uitestbase.config.Config.BASE_SAUCE_DEMO_URL;
 
 public class LoginPage extends BasePage {
+    /// LOCATORS
     By usernameField = By.id("user-name");
     By passwordField = By.id("password");
     By loginButton = By.id("login-button");
