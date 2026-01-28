@@ -16,6 +16,7 @@ public class JsonCredentialsParser {
     private JsonCredentialsParser() {
     }
 
+    // The method tests actually call
     public static CredentialDTO getCredential(String targetUsername) {
         return getCachedCredentials().stream()
                 .filter(c -> c.getUsername().equals(targetUsername))
@@ -24,7 +25,6 @@ public class JsonCredentialsParser {
                         new IllegalArgumentException("User not found: " + targetUsername));
     }
 
-    // The method tests actually call
     public static List<CredentialDTO> getCachedCredentials() {
         // Only load the file if we haven't done it yet.
         if (cachedCredentials == null) {
@@ -39,16 +39,16 @@ public class JsonCredentialsParser {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
-            InputStream is = JsonCredentialsParser.class
+            InputStream inputstream = JsonCredentialsParser.class
                     .getClassLoader()
                     .getResourceAsStream("credential.json");
 
-            if (is == null) {
+            if (inputstream == null) {
                 throw new IllegalStateException("credential.json not found");
             }
 
             CredentialDTO[] credentials =
-                    mapper.readValue(is, CredentialDTO[].class);
+                    mapper.readValue(inputstream, CredentialDTO[].class);
 
             List<CredentialDTO> credentialList = List.of(credentials);
 

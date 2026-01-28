@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import uitestbase.BasePage;
 
 public class CartPage extends BasePage {
-
     private static final By checkoutButton = By.id("checkout");
 
     public CartPage(WebDriver driver) {

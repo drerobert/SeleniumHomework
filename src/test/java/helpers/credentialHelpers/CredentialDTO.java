@@ -3,7 +3,6 @@ package helpers.credentialHelpers;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CredentialDTO {
-
     @JsonProperty("username")
     private String username;
 

@@ -13,9 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,9 +26,6 @@ public class BaseUiTest {
     protected WebDriver driver;
 
     protected static final Logger logger = LoggerFactory.getLogger(BaseUiTest.class);
-
-    //parse the JSON for credentials
-    protected static final List<CredentialDTO> loginCredentials = JsonCredentialsParser.getCachedCredentials();
 
     @BeforeEach
     public void initializeDriver() {
@@ -55,10 +50,8 @@ public class BaseUiTest {
         //Store preferences
         Map<String, Object> prefs = new HashMap<>();
 
-        //Disable chrome pop ups
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
-
         prefs.put("profile.password_manager_leak_detection", false);
 
         options.setExperimentalOption("prefs", prefs);
