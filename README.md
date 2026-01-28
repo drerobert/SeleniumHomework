@@ -1,17 +1,22 @@
 
 ## Selenium Java Automation Framework - Genesys interview homework
 
-## This repository contains an automated test suite for various websites
-
+This repository contains an automated test suite for various websites
 The project was made for evaluation purposes for genesys
 It is an implementation of the requirements from HomeWork.pdf
 
 The project follows the Page Object Model (POM) design pattern
+
 src/test/java
+
 apitests – API test scenarios
+
 helpers – Shared utilities (Credential parsing, WaitHelpers)
+
 pages – Page Objects organized by domain (guru99, htmleditor, saucedemo)
+
 uitestbase – Core framework logic (BasePage, BaseUiTest, config)
+
 uitests – executable test classes (GuruTests, SauceDemoTests, RichTextEditorTests)
 
 src/test/resources (credentials and requirements)
